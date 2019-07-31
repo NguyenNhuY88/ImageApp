@@ -10,3 +10,4 @@
 		
 5. Đẩyt code lên nhánh  cá nhân: git push origin TenNhanhVuaCode
 6. link project gốc thấy cái nút Pull Request , click vào để điền nội dung merge code vào project chính.
+7. Xong lên trang github sẽ thấy nút màu xanh lá cây compare &&Pull request, ấn vào đó để tạo yêu cầu gộp code từ nhánh của bạn vào nhánh master. Sau đó nó sẽ tự so sánh xem có xung đột gì không ( xung đột khi có 2 người cùng sửa 1 chỗ code nào đấy) còn không có xung đột gì thì nó sẽ hiện nút màu xanh lá cây Merge ở dưới, ấn vào đấy là xong
