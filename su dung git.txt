@@ -1,0 +1,12 @@
+﻿1. Clone về một thư mục nào đấy trên máy :  git clone https://github.com/NguyenNhuY88/ImageApp
+2. Tạo branch riêng để phát triển: git checkout -b TenNhanh
+3. Code xong thì mở git: gõ lệnh : git add . để theo dõi tất cả các file được thay đổi
+				   git commit -m"comment comment...."  để xác nhận thay đổi.
+4. Chuyển sang nhánh chính để kéo các code chung của mọi người từ nhánh master, sau đó gộp code từ nhánh của mình vào nhánh master: gõ lệnh:
+	git checkout master  ( chuyển sang nhánh master)
+	git pull
+	git checkout TenNhanhVuaCode
+	git merge master 
+		
+5. Đẩyt code lên nhánh  cá nhân: git push origin TenNhanhVuaCode
+6. link project gốc thấy cái nút Pull Request , click vào để điền nội dung merge code vào project chính.
