@@ -5,59 +5,68 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.gallery.R;
+import com.example.gallery.utils.Function;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SingleAlbumAdapter extends BaseAdapter {
 
-    private String[] data;
-    Context mContext;
+    private Context mContext;
+    private ArrayList<HashMap<String, String>> data;
 
-
-    public SingleAlbumAdapter(String[] data, Context mContext) {
-            this.data = data;
-            this.mContext = mContext;
+    public SingleAlbumAdapter(Context mContext, ArrayList<HashMap<String, String>> d) {
+        this.mContext = mContext;
+        this.data = d;
     }
-
-    @Override
-    
 
     public int getCount() {
-        return data.length;
+        return data.size();
     }
 
-    @Override
-    public Object getItem(int i) {
-        return i;
+    public Object getItem(int position) {
+        return position;
     }
 
-    @Override
-    public long getItemId(int i) {
-        return i;
+    public long getItemId(int position) {
+        return position;
     }
 
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(int position, View convertView, ViewGroup parent) {
         SingleAlbumViewHolder holder = null;
-        if (view == null) {
+        if (convertView == null) {
             holder = new SingleAlbumViewHolder();
-            view = LayoutInflater.from(mContext).inflate(
-                    R.layout.single_album_row, viewGroup, false);
+            convertView = LayoutInflater.from(mContext).inflate(
+                    R.layout.single_album_row, parent, false);
 
-            holder.textView = (TextView) view.findViewById(R.id.tv_1);
+            holder.galleryImage = (ImageView) convertView.findViewById(R.id.galleryImage);
 
-            view.setTag(holder);
+            convertView.setTag(holder);
         } else {
-            holder = (SingleAlbumViewHolder) view.getTag();
+            holder = (SingleAlbumViewHolder) convertView.getTag();
         }
+        holder.galleryImage.setId(position);
 
-        String tmp = data[i];
-        holder.textView.setText(tmp);
+        HashMap<String, String> song = new HashMap<String, String>();
+        song = data.get(position);
+        try {
 
-        return view;
+            Glide.with(mContext)
+                    .load(new File(song.get(Function.KEY_PATH))) // Uri of the picture
+                    .into(holder.galleryImage);
+
+
+        } catch (Exception ignored) {
+        }
+        return convertView;
     }
+
     static class SingleAlbumViewHolder {
-        TextView textView;
+        ImageView galleryImage;
     }
 }
