@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout = (TabLayout)findViewById(R.id.tab_main);
         viewPager = (ViewPager)findViewById(R.id.view_main);
-
+        viewPager.setCurrentItem(2);
         tabLayout.addTab(tabLayout.newTab().setText("ALBUM"));
         tabLayout.addTab(tabLayout.newTab().setText("PHOTOS"));
         tabLayout.addTab(tabLayout.newTab().setText("MEMORIES"));
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(tabLayoutAdapter);
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
 
             @Override
@@ -49,5 +50,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
     }
 }
