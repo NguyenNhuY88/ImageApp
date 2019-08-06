@@ -28,14 +28,15 @@ public class MemoryFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.memory_fragment, container, false);
         prepareData();
-        RecyclerView recyclerView = getView().findViewById(R.id.memories_list);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.memories_list);
         recyclerView.setHasFixedSize(true);
         layoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView.setLayoutManager(layoutManager);
         memoryAdapter = new MemoryAdapter(getContext(), memories);
         recyclerView.setAdapter(memoryAdapter);
-        return inflater.inflate(R.layout.memory_fragment, container, false);
+        return view;
     }
 
     private void prepareData() {

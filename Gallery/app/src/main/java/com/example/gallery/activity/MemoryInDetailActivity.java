@@ -3,7 +3,7 @@ package com.example.gallery.activity;
 import android.os.Bundle;
 
 import com.example.gallery.adapter.PhotoAdapter;
-import com.example.nhom5.Model.Photo;
+import com.example.gallery.model.Photo;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -24,7 +24,11 @@ public class MemoryInDetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.photo_list);
         recyclerView.setHasFixedSize(true);
-        for (int i = 0; i < 10; i++) photos.add(new Photo("Photo" + i));
+        for (int i = 0; i < 10; i++) {
+            Photo photo = new Photo();
+            photo.setTitle("Photo" + i);
+            photos.add(photo);
+        }
         layoutManager = new GridLayoutManager(getApplicationContext(), 2);
         recyclerView.setLayoutManager(layoutManager);
         photosAdapter = new PhotoAdapter(photos, getApplicationContext());

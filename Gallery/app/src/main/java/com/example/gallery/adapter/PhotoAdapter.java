@@ -4,14 +4,15 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.gallery.R;
-import com.example.nhom5.Model.Photo;
-
+import com.example.gallery.model.Photo;
 import java.util.List;
 
 public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoHolder> {
@@ -32,7 +33,11 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoHolder>
 
     @Override
     public void onBindViewHolder(@NonNull PhotoHolder holder, int position) {
-        holder.title.setText(photos.get(position).getTitle());
+        Photo photo = photos.get(position);
+        Glide.with(context)
+                .load(photo.getPath())
+                .into(holder.photo);
+        holder.title.setText(photo.getTitle());
     }
 
     @Override
@@ -41,9 +46,11 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoHolder>
     }
 
     public class PhotoHolder extends RecyclerView.ViewHolder {
+        private ImageView photo;
         private TextView title;
         public PhotoHolder(@NonNull View itemView) {
             super(itemView);
+            photo = itemView.findViewById(R.id.photo);
             title = itemView.findViewById(R.id.title);
         }
     }

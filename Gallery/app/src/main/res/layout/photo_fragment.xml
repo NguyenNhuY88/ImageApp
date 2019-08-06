@@ -5,11 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.gallery.fragment.PhotoFragment">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/photos_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Photo of you" />
-
+        android:layout_height="match_parent" />
 
 </FrameLayout>

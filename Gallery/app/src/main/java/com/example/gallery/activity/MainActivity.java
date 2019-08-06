@@ -1,8 +1,10 @@
 package com.example.gallery.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.viewpager.widget.ViewPager;
 
+import android.Manifest;
 import android.os.Bundle;
 
 import com.example.gallery.R;
@@ -11,7 +13,7 @@ import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    static final int REQUEST_PERMISSION_KEY = 1;
     TabLayout tabLayout;
     ViewPager viewPager;
 
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
+//        String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
+//        ActivityCompat.requestPermissions(this, PERMISSIONS, REQUEST_PERMISSION_KEY);
     }
 }
