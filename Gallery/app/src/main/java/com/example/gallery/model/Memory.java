@@ -1,14 +1,15 @@
 package com.example.gallery.model;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 public class Memory {
     private String name;
-    private long date;
+    private Date date;
     private String place;
     private ArrayList<Photo> photos = new ArrayList<>();
 
-    public Memory(String name, long date, String place) {
+    public Memory(String name, Date date, String place) {
         this.name = name;
         this.date = date;
         this.place = place;
@@ -33,11 +34,11 @@ public class Memory {
         this.name = name;
     }
 
-    public long getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(long date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

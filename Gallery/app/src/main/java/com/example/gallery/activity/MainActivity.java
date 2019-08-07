@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.example.gallery.DatabaseHelper;
 import com.example.gallery.R;
 import com.example.gallery.adapter.TabLayoutAdapter;
 import com.google.android.material.tabs.TabLayout;
@@ -18,11 +19,15 @@ public class MainActivity extends AppCompatActivity {
     static final int REQUEST_PERMISSION_KEY = 1;
     TabLayout tabLayout;
     ViewPager viewPager;
+    DatabaseHelper myDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        myDb = new DatabaseHelper(this);
+
         tabLayout = (TabLayout)findViewById(R.id.tab_main);
         viewPager = (ViewPager)findViewById(R.id.view_main);
         tabLayout.addTab(tabLayout.newTab().setText("ALBUM"));
