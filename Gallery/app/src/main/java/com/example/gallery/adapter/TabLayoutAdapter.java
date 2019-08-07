@@ -28,7 +28,7 @@ public class TabLayoutAdapter extends FragmentPagerAdapter {
                 return photoFragment;
 
             case 1:
-                AlbumFragment albumFragment = new AlbumFragment(myContext);
+                AlbumFragment albumFragment = new AlbumFragment();
                 return albumFragment;
             case 2:
 
