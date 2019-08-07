@@ -1,14 +1,11 @@
 package com.example.gallery.model;
 
-import android.graphics.Bitmap;
-
 public class Photo {
     private String title;
     private String path;
     private String album;
     private String timestamp;
     private String memory;
-    private Bitmap thumbnail;
 
     public Photo() {
     }
@@ -44,7 +41,7 @@ public class Photo {
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
-
+    
     public String getMemory() {
         return memory;
     }
@@ -53,11 +50,5 @@ public class Photo {
         this.memory = memory;
     }
 
-    public Bitmap getThumbnail() {
-        return thumbnail;
-    }
 
-    public void setThumbnail(Bitmap thumbnail) {
-        this.thumbnail = thumbnail;
-    }
 }

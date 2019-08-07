@@ -44,7 +44,7 @@ public class MemoryAdapter extends RecyclerView.Adapter<MemoryAdapter.MemoryView
         private TextView title;
         public MemoryViewHolder(@NonNull View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.memory_title);
+            title = itemView.findViewById(R.id.tv_memory_title);
         }
     }
 }

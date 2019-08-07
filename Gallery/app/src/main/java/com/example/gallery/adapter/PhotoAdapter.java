@@ -13,9 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.gallery.R;
-import com.example.gallery.activity.SquareImageView;
 import com.example.gallery.model.Photo;
 import java.util.List;
 
@@ -57,8 +55,10 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoHolder>
         Glide.with(context)
                 .load(photo.getPath())
                 .into(holder.photo);
-        holder.photo.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        holder.title.setText(photo.getAlbum());
+        /*holder.photo.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        holder.photo.setMaxHeight(photo_width);
+        holder.photo.setMaxWidth(photo_width);*/
+        holder.title.setText(photo.getTitle());
     }
 
     @Override
@@ -67,7 +67,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoHolder>
     }
 
     public class PhotoHolder extends RecyclerView.ViewHolder {
-        private SquareImageView photo;
+        private ImageView photo;
         private TextView title;
         public PhotoHolder(@NonNull View itemView) {
             super(itemView);

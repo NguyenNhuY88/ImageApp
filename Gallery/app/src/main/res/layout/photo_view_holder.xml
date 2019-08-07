@@ -2,15 +2,18 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_marginHorizontal="5dp"
-    android:layout_marginTop="5dp">
+    android:orientation="vertical">
+
+
+
+
     <com.example.gallery.activity.SquareImageView
         android:id="@+id/photo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:src="@mipmap/ic_launcher" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,9 +22,12 @@
 
         <TextView
             android:id="@+id/title"
+            style="@style/MemoryTitleStyle"
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Camera" />
+
+
     </LinearLayout>
 </androidx.appcompat.widget.LinearLayoutCompat>
