@@ -5,6 +5,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.gallery.R;
@@ -21,15 +23,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         tabLayout = (TabLayout)findViewById(R.id.tab_main);
         viewPager = (ViewPager)findViewById(R.id.view_main);
-        viewPager.setCurrentItem(2);
         tabLayout.addTab(tabLayout.newTab().setText("ALBUM"));
         tabLayout.addTab(tabLayout.newTab().setText("PHOTOS"));
         tabLayout.addTab(tabLayout.newTab().setText("MEMORIES"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
         final TabLayoutAdapter tabLayoutAdapter = new TabLayoutAdapter(this,getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(tabLayoutAdapter);
 
@@ -52,6 +51,10 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        Intent intent = getIntent();
+        int curTab = intent.getIntExtra("CURRENT_TAB", 0);
+        TabLayout.Tab tab = tabLayout.getTabAt(curTab);
+        tab.select();
 //        String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
 //        ActivityCompat.requestPermissions(this, PERMISSIONS, REQUEST_PERMISSION_KEY);
     }

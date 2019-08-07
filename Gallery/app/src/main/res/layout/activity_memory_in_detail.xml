@@ -28,11 +28,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
+                app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            </androidx.appcompat.widget.Toolbar>
+
+            <ImageButton
+                android:id="@+id/backBtn"
+                android:layout_width="55dp"
+                android:layout_height="54dp"
+                android:background="@color/colorPrimary"
+                app:srcCompat="@drawable/ic_back" />
+
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_memory_in_detail"/>
+    <include layout="@layout/content_memory_in_detail" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

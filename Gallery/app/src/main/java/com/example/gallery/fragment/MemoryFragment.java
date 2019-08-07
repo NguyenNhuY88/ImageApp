@@ -1,5 +1,6 @@
 package com.example.gallery.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gallery.R;
+import com.example.gallery.activity.MemoryInDetailActivity;
 import com.example.gallery.adapter.MemoryAdapter;
 import com.example.gallery.model.Memory;
 
@@ -32,9 +34,9 @@ public class MemoryFragment extends Fragment {
         prepareData();
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.memories_list);
         recyclerView.setHasFixedSize(true);
-        layoutManager = new GridLayoutManager(getContext(), 2);
+        layoutManager = new GridLayoutManager(view.getContext(), 2);
         recyclerView.setLayoutManager(layoutManager);
-        memoryAdapter = new MemoryAdapter(getContext(), memories);
+        memoryAdapter = new MemoryAdapter(view.getContext(), memories);
         recyclerView.setAdapter(memoryAdapter);
         return view;
     }
