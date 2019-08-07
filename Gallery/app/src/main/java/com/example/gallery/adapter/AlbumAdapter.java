@@ -38,20 +38,15 @@ public class AlbumAdapter extends BaseAdapter {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        AlbumViewHolder holder = null;
-        if (convertView == null) {
-            holder = new AlbumViewHolder();
-            convertView = LayoutInflater.from(mContext).inflate(
+        AlbumViewHolder holder = new AlbumViewHolder();
+        convertView = LayoutInflater.from(mContext).inflate(
                     R.layout.album_row, parent, false);
 
-            holder.galleryImage = (ImageView) convertView.findViewById(R.id.galleryImage);
-            holder.gallery_count = (TextView) convertView.findViewById(R.id.gallery_count);
-            holder.gallery_title = (TextView) convertView.findViewById(R.id.gallery_title);
+        holder.galleryImage = (ImageView) convertView.findViewById(R.id.galleryImage);
+        holder.gallery_count = (TextView) convertView.findViewById(R.id.gallery_count);
+        holder.gallery_title = (TextView) convertView.findViewById(R.id.gallery_title);
+        convertView.setTag(holder);
 
-            convertView.setTag(holder);
-        } else {
-            holder = (AlbumViewHolder) convertView.getTag();
-        }
         holder.galleryImage.setId(position);
         holder.gallery_count.setId(position);
         holder.gallery_title.setId(position);
