@@ -1,8 +1,11 @@
 package com.example.gallery.fragment;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.MergeCursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -50,8 +53,9 @@ public class PhotoFragment extends Fragment {
         Uri uriInternal = android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI;
         String[] projection = {MediaStore.MediaColumns.DATA,
                 MediaStore.Images.Media.BUCKET_DISPLAY_NAME, MediaStore.MediaColumns.DATE_MODIFIED};
-        Cursor cursorExternal = context.getContentResolver().query(uriExternal, projection, null, null, null);
-        Cursor cursorInternal = context.getContentResolver().query(uriInternal, projection, null, null, null);
+        ContentResolver contentResolver = context.getContentResolver();
+        Cursor cursorExternal = contentResolver.query(uriExternal, projection, null, null, null);
+        Cursor cursorInternal = contentResolver.query(uriInternal, projection, null, null, null);
 
 //        Cursor cursorExternal = context.getContentResolver().query(uriExternal, projection, "_data IS NOT NULL) GROUP BY (bucket_display_name",
 //                null, null);
@@ -64,7 +68,6 @@ public class PhotoFragment extends Fragment {
             photo.setPath(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA)));
             photo.setAlbum(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME)));
             photo.setTimestamp(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATE_MODIFIED)));
-            //countPhoto = Function.getCount(getApplicationContext(), album);
             memories.add(photo);
         }
         cursor.close();
