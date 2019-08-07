@@ -8,7 +8,7 @@ public class Photo {
     private String title;
     private String path;
     private String album;
-    private Date createdDate;
+    private long createdDate;
     private int memoryId;
     private Bitmap thumbnail;
 
@@ -47,11 +47,11 @@ public class Photo {
         this.album = album;
     }
 
-    public Date getCreatedDate() {
+    public long getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(long createdDate) {
         this.createdDate = createdDate;
     }
 

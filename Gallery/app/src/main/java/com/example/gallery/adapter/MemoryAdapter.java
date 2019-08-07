@@ -15,6 +15,7 @@ import com.example.gallery.activity.MemoryInDetailActivity;
 import com.example.gallery.activity.SquareImageView;
 import com.example.gallery.model.Memory;
 
+import java.sql.Date;
 import java.util.List;
 
 public class MemoryAdapter extends RecyclerView.Adapter<MemoryAdapter.MemoryViewHolder> {
@@ -35,13 +36,15 @@ public class MemoryAdapter extends RecyclerView.Adapter<MemoryAdapter.MemoryView
 
     @Override
     public void onBindViewHolder(@NonNull MemoryViewHolder holder, int position) {
-        holder.title.setText(memoryList.get(position).getName());
-        holder.place.setText(memoryList.get(position).getPlace());
-        holder.date.setText(memoryList.get(position).getDate()+"");
+        final Memory memory = memoryList.get(position);
+        holder.title.setText(memory.getName());
+        holder.place.setText(memory.getPlace());
+        holder.date.setText(String.valueOf(memory.getDate()));
         holder.cover_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, MemoryInDetailActivity.class);
+                intent.putExtra("MEMORY_ID", memory.getId());
                 context.startActivity(intent);
             }
         });

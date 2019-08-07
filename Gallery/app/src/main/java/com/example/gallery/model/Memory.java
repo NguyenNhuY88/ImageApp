@@ -4,15 +4,28 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 public class Memory {
+    private int id;
     private String name;
-    private Date date;
+    private long date;
     private String place;
+    private String cover_image;
     private ArrayList<Photo> photos = new ArrayList<>();
 
-    public Memory(String name, Date date, String place) {
+    public Memory(String name, long date, String place) {
         this.name = name;
         this.date = date;
         this.place = place;
+    }
+
+    public Memory() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void addPhoto(Photo photo){
@@ -34,11 +47,19 @@ public class Memory {
         this.name = name;
     }
 
-    public Date getDate() {
+    public String getCover_image() {
+        return cover_image;
+    }
+
+    public void setCover_image(String cover_image) {
+        this.cover_image = cover_image;
+    }
+
+    public long getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(long date) {
         this.date = date;
     }
 

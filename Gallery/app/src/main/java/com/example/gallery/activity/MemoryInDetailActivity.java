@@ -11,7 +11,9 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.example.gallery.DatabaseHelper;
 import com.example.gallery.adapter.PhotoAdapter;
+import com.example.gallery.model.Memory;
 import com.example.gallery.model.Photo;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -33,6 +35,7 @@ public class MemoryInDetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        loadData(this, getIntent().getIntExtra("MEMORY_ID", 0));
         ImageButton backBtn = this.findViewById(R.id.backBtn);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,7 +47,6 @@ public class MemoryInDetailActivity extends AppCompatActivity {
         });
         RecyclerView recyclerView = (RecyclerView) this.findViewById(R.id.photo_list);
         recyclerView.setHasFixedSize(true);
-        loadData(getApplicationContext());
         layoutManager = new GridLayoutManager(getApplicationContext(), 2);
         recyclerView.setLayoutManager(layoutManager);
         photosAdapter = new PhotoAdapter(photos, getApplicationContext());
@@ -52,26 +54,16 @@ public class MemoryInDetailActivity extends AppCompatActivity {
 
 
     }
-    private void loadData(Context context) {
-        Uri uriExternal = android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-        Uri uriInternal = android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI;
-        String[] projection = {MediaStore.MediaColumns.DATA,
-                MediaStore.Images.Media.BUCKET_DISPLAY_NAME, MediaStore.MediaColumns.DATE_MODIFIED};
-        ContentResolver contentResolver = context.getContentResolver();
-        Cursor cursorExternal = contentResolver.query(uriExternal, projection, null, null, null);
-        Cursor cursorInternal = contentResolver.query(uriInternal, projection, null, null, null);
-
-//        Cursor cursorExternal = context.getContentResolver().query(uriExternal, projection, "_data IS NOT NULL) GROUP BY (bucket_display_name",
-//                null, null);
-//        Cursor cursorInternal = context.getContentResolver().query(uriInternal, projection, "_data IS NOT NULL) GROUP BY (bucket_display_name",
-//                null, null);
-        Cursor cursor = new MergeCursor(new Cursor[]{cursorExternal, cursorInternal});
-
+    private void loadData(Context context, int memoryId) {
+        photos.clear();
+        Cursor cursor = DatabaseHelper.getInstance(context).getPhotosByMemory(memoryId);
         while (cursor.moveToNext()) {
             Photo photo = new Photo();
-            photo.setPath(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA)));
-            photo.setAlbum(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME)));
-            photo.setTimestamp(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATE_MODIFIED)));
+            photo.setTitle(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.TITLE)));
+            photo.setCreatedDate(cursor.getLong(cursor.getColumnIndexOrThrow(DatabaseHelper.CREATED_DATE)));
+            photo.setPath(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.PATH)));
+            photo.setAlbum(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.ALBUM)));
+            photo.setMemoryId(cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.MEMORY_ID)));
             photos.add(photo);
         }
         cursor.close();

@@ -67,7 +67,7 @@ public class PhotoFragment extends Fragment {
             Photo photo = new Photo();
             photo.setPath(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA)));
             photo.setAlbum(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME)));
-            photo.setTimestamp(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATE_MODIFIED)));
+            photo.setCreatedDate(cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATE_MODIFIED)));
             memories.add(photo);
         }
         cursor.close();

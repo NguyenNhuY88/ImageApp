@@ -2,6 +2,7 @@ package com.example.gallery;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -22,8 +23,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String MEMORY_NAME = "NAME";
     public static final String MEMORY_DATE = "DATE";
     public static final String MEMORY_PLACE = "PLACE";
+    public static final String MEMORY_COVER_IMAGE= "COVER_IMAGE";
 
-    public DatabaseHelper(Context context) {
+    private static DatabaseHelper Instance = null;
+
+    public static DatabaseHelper getInstance(Context context){
+        if (Instance == null){
+            Instance = new DatabaseHelper(context);
+        }
+        return Instance;
+    }
+
+    private DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
 
     }
@@ -32,11 +43,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(String.format("CREATE TABLE IF NOT EXISTS %s " +
                 "(%s INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "%s TEXT, %s TEXT, %s DATETIME);",
-                MEMORY_TABLE, ID, MEMORY_NAME, MEMORY_PLACE, MEMORY_DATE));
+                "%s TEXT, %s TEXT, %s TEXT, %s TEXT);",
+                MEMORY_TABLE, ID, MEMORY_NAME, MEMORY_PLACE, MEMORY_DATE, MEMORY_COVER_IMAGE));
         sqLiteDatabase.execSQL(String.format("CREATE TABLE IF NOT EXISTS %s " +
                 "(%s INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "%s TEXT, %s TEXT, %s TEXT, %s DATETIME, %s INTEGER," +
+                "%s TEXT, %s TEXT, %s TEXT, %s TEXT, %s INTEGER," +
                 "FOREIGN KEY (%s) REFERENCES %s(%s));",
                 PHOTO_TABLE, ID, TITLE, PATH, ALBUM, CREATED_DATE, MEMORY_ID, MEMORY_ID, MEMORY_TABLE, ID));
     }
@@ -65,7 +76,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(MEMORY_NAME, memory.getName());
         contentValues.put(MEMORY_DATE, String.valueOf(memory.getDate()));
         contentValues.put(MEMORY_PLACE, memory.getPlace());
+        contentValues.put(MEMORY_COVER_IMAGE, memory.getCover_image());
         return db.insert(MEMORY_TABLE, null, contentValues) != -1;
     }
 
+    public Cursor getAllMemories(){
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM " + MEMORY_TABLE, null);
+        return res;
+    }
+
+    public Cursor getPhotosByMemory(int memoryId){
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor res = db.rawQuery(String.format("SELECT * FROM %s JOIN %s ON %s.%s = %s.%s WHERE %s.%s = ?;",
+                                                    PHOTO_TABLE, MEMORY_TABLE, PHOTO_TABLE, MEMORY_ID, MEMORY_TABLE, ID, MEMORY_TABLE, ID),
+                                    new String[] {String.valueOf(memoryId)});
+        return res;
+    }
 }
