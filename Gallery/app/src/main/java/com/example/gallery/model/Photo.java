@@ -5,6 +5,7 @@ public class Photo {
     private String path;
     private String album;
     private String timestamp;
+    private String memory;
 
     public Photo() {
     }
@@ -40,4 +41,14 @@ public class Photo {
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
+    
+    public String getMemory() {
+        return memory;
+    }
+
+    public void setMemory(String memory) {
+        this.memory = memory;
+    }
+
+
 }
