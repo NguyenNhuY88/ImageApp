@@ -62,10 +62,14 @@ public class MemoryAdapter extends RecyclerView.Adapter<MemoryAdapter.MemoryView
         private SquareImageView cover_image;
         public MemoryViewHolder(@NonNull View itemView) {
             super(itemView);
+
+ //           title = itemView.findViewById(R.id.tv_memory_title);
+
             title = itemView.findViewById(R.id.title);
             place = itemView.findViewById(R.id.place);
             date = itemView.findViewById(R.id.date);
             cover_image = itemView.findViewById(R.id.cover_image);
+
         }
     }
 }

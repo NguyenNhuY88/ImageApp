@@ -75,12 +75,14 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
         Intent intent = getIntent();
         int curTab = intent.getIntExtra("CURRENT_TAB", 0);
         TabLayout.Tab tab = tabLayout.getTabAt(curTab);
         tab.select();
 //        String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
 //        ActivityCompat.requestPermissions(this, PERMISSIONS, REQUEST_PERMISSION_KEY);
+
     }
 
     private void loadData(Context context) {

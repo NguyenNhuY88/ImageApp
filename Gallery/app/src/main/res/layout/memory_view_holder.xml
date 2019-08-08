@@ -2,6 +2,20 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+
+<!--     android:orientation="vertical">
+
+    <com.example.gallery.activity.SquareImageView
+        android:id="@+id/img_cover"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:src="@mipmap/ic_launcher" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+ -->
     android:orientation="vertical"
     android:layout_marginHorizontal="5dp"
     android:layout_marginTop="5dp">
@@ -14,10 +28,38 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:gravity="center"
         android:orientation="vertical">
 
         <TextView
+<!-- <<<<<<< y/sqlite
+            android:id="@+id/tv_memory_title"
+            style="@style/MemoryTitleStyle"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="memory_name" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            style="@style/MemoryDateStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="3dp"
+            android:background="@android:color/holo_blue_dark"
+            android:text="01-01-2019" />
+        <TextView
+            android:id="@+id/tv_place"
+            style="@style/MemoryPlaceStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="3dp"
+            android:background="@android:color/holo_blue_dark"
+            android:text="Ha Noi" />
+ -->
             android:id="@+id/title"
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
@@ -35,6 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Date" />
+
 
     </LinearLayout>
 </androidx.appcompat.widget.LinearLayoutCompat>
