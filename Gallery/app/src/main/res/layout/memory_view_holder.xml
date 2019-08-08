@@ -2,7 +2,8 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+
+<!--     android:orientation="vertical">
 
     <com.example.gallery.activity.SquareImageView
         android:id="@+id/img_cover"
@@ -14,10 +15,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+ -->
+    android:orientation="vertical"
+    android:layout_marginHorizontal="5dp"
+    android:layout_marginTop="5dp">
+    <com.example.gallery.activity.SquareImageView
+        android:id="@+id/cover_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:src="@mipmap/ic_launcher" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
         android:gravity="center"
         android:orientation="vertical">
 
         <TextView
+<!-- <<<<<<< y/sqlite
             android:id="@+id/tv_memory_title"
             style="@style/MemoryTitleStyle"
             android:layout_gravity="center_horizontal"
@@ -43,5 +59,25 @@
             android:layout_margin="3dp"
             android:background="@android:color/holo_blue_dark"
             android:text="Ha Noi" />
+ -->
+            android:id="@+id/title"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Camera" />
+        <TextView
+            android:id="@+id/place"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Place" />
+        <TextView
+            android:id="@+id/date"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date" />
+
+
     </LinearLayout>
 </androidx.appcompat.widget.LinearLayoutCompat>

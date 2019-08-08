@@ -1,17 +1,31 @@
 package com.example.gallery.model;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 public class Memory {
+    private int id;
     private String name;
     private long date;
     private String place;
+    private String cover_image;
     private ArrayList<Photo> photos = new ArrayList<>();
 
     public Memory(String name, long date, String place) {
         this.name = name;
         this.date = date;
         this.place = place;
+    }
+
+    public Memory() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void addPhoto(Photo photo){
@@ -31,6 +45,14 @@ public class Memory {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCover_image() {
+        return cover_image;
+    }
+
+    public void setCover_image(String cover_image) {
+        this.cover_image = cover_image;
     }
 
     public long getDate() {
